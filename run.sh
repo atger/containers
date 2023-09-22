@@ -1,5 +1,11 @@
 IMAGE=$1
 ARG=$2
+
+if [ -z "$(docker images -q $IMAGE:latest)" ];
+then
+    docker build $IMAGE -t $IMAGE
+fi
+
 docker run --rm -it \
     -u $UID:$GID \
     -w $PWD \
