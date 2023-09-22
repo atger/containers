@@ -1,5 +1,5 @@
 IMAGE=$1
-ARG=$2
+COMMAND=${@:2}
 
 if [ -z "$(docker images -q $IMAGE:latest)" ];
 then
@@ -14,4 +14,4 @@ docker run --rm -it \
     -v /etc/shadow:/etc/shadow:ro \
     -v $HOME:$HOME \
     -v /mnt:/mnt  \
-    $IMAGE $ARG
+    $IMAGE $COMMAND
